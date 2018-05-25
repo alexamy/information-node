@@ -17,7 +17,7 @@
     "start": "npm run build && npm run startBin",
     "startBin": "node ./bin/main.js ./data/message.txt",
     "build": "babel src -d bin",
-    "test": "mocha"
+    "test": "mocha --require babel-core/register"
   },
   "author": "alexch",
   "license": "MIT"
