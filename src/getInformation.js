@@ -3,10 +3,9 @@ export default class Information {
     this.message = this.process(message);
   }
 
-  process(message) {
-    return message
+  process = message =>
+    message
       .trim()
       .toLowerCase()
       .replace(/[^ а-я]/g, '');
-  }
 }
