@@ -19,22 +19,18 @@ describe('Information#message', () => {
   });
 });
 
-describe('Information#symbols', () => {
+describe('Information#countCountsInMessage', () => {
   const tests = [
-    [
-      'should have unique symbols 1',
-      'Поле, полное полыни, выпало полоть Полине.',
-      new Set('поле полное полыни выпало полоть полине')
-    ],
-    [
-      'should have unique symbols 2',
-      'фыафпфыфыВПУЫПМФыв1214',
-      new Set('фыафпфыфывпуыпмфыв')
-    ]
+    ['One symbol', 'ололок', 'к', 1],
+    ['More than one symbol', 'приветики', 'и', 3],
+    ['Zero symbols', 'лапалуза', 'ф', 0]
   ];
-  tests.forEach(([shouldWhat, message, expected]) => {
+  tests.forEach(([shouldWhat, message, symToCount, expected], i) => {
     it(shouldWhat, () =>
-      assert.deepEqual(new Information(message).symbols, expected)
+      assert.equal(
+        new Information(message).countCountsInMessage(symToCount),
+        expected
+      )
     );
   });
 });
