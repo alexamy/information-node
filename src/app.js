@@ -1,5 +1,5 @@
 import { readFile } from 'fs';
-import { Information } from './getInformation.js';
+import Information from './getInformation.js';
 
 function processFile(error, data) {
   if (error) {
