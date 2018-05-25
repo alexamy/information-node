@@ -1,9 +1,9 @@
 export default class Information {
   constructor(message) {
-    this.message = Information.process(message);
+    this.message = this.process(message);
   }
 
-  static process(message) {
+  process(message) {
     return message
       .trim()
       .toLowerCase()

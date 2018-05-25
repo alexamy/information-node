@@ -14,7 +14,7 @@ describe('Information#process(message)', () => {
   ];
   tests.forEach(([shouldWhat, message, expected]) => {
     it(shouldWhat, () =>
-      assert.strictEqual(Information.process(message), expected)
+      assert.strictEqual(new Information(message).message, expected)
     );
   });
 });
