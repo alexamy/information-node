@@ -14,7 +14,8 @@
     "mocha": "^5.2.0"
   },
   "scripts": {
-    "start": "node ./bin/main.js ./data/message.txt",
+    "start": "npm run build && npm run startBin",
+    "startBin": "node ./bin/main.js ./data/message.txt",
     "build": "babel src -d bin",
     "test": "mocha"
   },

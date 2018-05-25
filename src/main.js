@@ -1,11 +1,18 @@
 #!/usr/bin/env node
 
 import { readFile } from 'fs';
+import { Information } from './getInformation.js';
 
 function processFile(error, data) {
-  error ? console.log(error) : console.log(data);
-}
+  if (error) {
+    console.log(error);
+    return error;
+  }
 
+  const message = data;
+  const info = new Information(message);
+  console.log(info.message);
+}
 const messagePath = process.argv[2];
 if (!messagePath) throw new Error('No path provided!');
 
