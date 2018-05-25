@@ -21,9 +21,9 @@ describe('Information#message', () => {
 
 describe('Information#countCountsInMessage', () => {
   const tests = [
+    ['Zero symbols', 'лапалуза', 'ф', 0],
     ['One symbol', 'ололок', 'к', 1],
-    ['More than one symbol', 'приветики', 'и', 3],
-    ['Zero symbols', 'лапалуза', 'ф', 0]
+    ['More than one symbol', 'приветики', 'и', 3]
   ];
   tests.forEach(([shouldWhat, message, symToCount, expected], i) => {
     it(shouldWhat, () =>
