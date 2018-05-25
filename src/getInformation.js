@@ -7,6 +7,6 @@ export default class Information {
     return message
       .trim()
       .toLowerCase()
-      .replace(/[^а-я]/g, '');
+      .replace(/[^ а-я]/g, '');
   }
 }
