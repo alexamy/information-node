@@ -14,11 +14,9 @@ export default class Information {
       .toLowerCase()
       .replace(/[^ а-я]/g, '');
 
-  countCountsInMessage = symToFind => {
-    let count = 0;
-    for (let sym of this.message) {
-      sym === symToFind && count++;
-    }
-    return count;
-  };
+  countsInMessage = symToFind =>
+    Array.from(this.message).reduce(
+      (acc, value) => (value === symToFind ? acc + 1 : acc),
+      0
+    );
 }

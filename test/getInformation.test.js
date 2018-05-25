@@ -19,7 +19,7 @@ describe('Information#message', () => {
   });
 });
 
-describe('Information#countCountsInMessage', () => {
+describe('Information#countsInMessage', () => {
   const tests = [
     ['Zero symbols', 'лапалуза', 'ф', 0],
     ['One symbol', 'ололок', 'к', 1],
@@ -28,7 +28,7 @@ describe('Information#countCountsInMessage', () => {
   tests.forEach(([shouldWhat, message, symToCount, expected], i) => {
     it(shouldWhat, () =>
       assert.equal(
-        new Information(message).countCountsInMessage(symToCount),
+        new Information(message).countsInMessage(symToCount),
         expected
       )
     );
