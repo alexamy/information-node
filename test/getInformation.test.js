@@ -1,5 +1,10 @@
 import assert from 'assert';
+import { should } from 'chai';
+
 import Information from '../src/getInformation.js';
+
+should();
+
 describe('Information#message', () => {
   const tests = [
     ['should trim', '  \tпривет      ', 'привет'],
@@ -14,7 +19,7 @@ describe('Information#message', () => {
   ];
   tests.forEach(([shouldWhat, message, expected]) => {
     it(shouldWhat, () =>
-      assert.strictEqual(new Information(message).message, expected)
+      new Information(message).message.should.equal(expected)
     );
   });
 });
@@ -27,10 +32,9 @@ describe('Information#countsInMessage', () => {
   ];
   tests.forEach(([shouldWhat, message, symToCount, expected], i) => {
     it(shouldWhat, () =>
-      assert.equal(
-        new Information(message).countsInMessage(symToCount),
-        expected
-      )
+      new Information(message)
+        .countsInMessage(symToCount)
+        .should.equal(expected)
     );
   });
 });
