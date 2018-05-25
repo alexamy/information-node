@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import { readFile } from 'fs';
 import { Information } from './getInformation.js';
 

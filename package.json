@@ -14,9 +14,7 @@
     "mocha": "^5.2.0"
   },
   "scripts": {
-    "start": "npm run build && npm run startBin",
-    "startBin": "node ./bin/main.js ./data/message.txt",
-    "build": "babel src -d bin",
+    "start": "babel-node --presets es2015 ./src/app.js ./data/message.txt",
     "test": "mocha --require babel-core/register"
   },
   "author": "alexch",
