@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { expect, should } from 'chai';
+import { should } from 'chai';
 
 import Information from '../src/getInformation.js';
 
@@ -54,7 +54,7 @@ describe('Information#entropy', () => {
   const tests = [['лапалуза', 2.15563906], ['фак', 1.5849625]];
   tests.forEach(([message, expected]) => {
     it('test', () =>
-      expect(new Information(message).entropy).to.be.closeTo(expected, 0.001));
+      new Information(message).entropy.should.be.closeTo(expected, 0.001));
   });
 });
 
@@ -62,9 +62,6 @@ describe('Information#redundancy', () => {
   const tests = [['лапалуза', 0.0716167], ['фак', 4.5e-10]];
   tests.forEach(([message, expected]) => {
     it('test', () =>
-      expect(new Information(message).redundancy).to.be.closeTo(
-        expected,
-        0.001
-      ));
+      new Information(message).redundancy.should.be.closeTo(expected, 0.001));
   });
 });
