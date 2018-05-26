@@ -8,6 +8,8 @@ export default class Information {
     };
     this.probabilities = this.countProbabilities();
     this.entropy = this.countInformation();
+    this.redunMax = Math.log2(this.symbols.length);
+    this.redundancy = 1 - this.entropy / this.redunMax;
   }
 
   process = message =>
@@ -35,4 +37,14 @@ export default class Information {
       (acc, prob) => acc + -prob * Math.log2(prob),
       0
     );
+
+  showTotal = () => {
+    console.log(
+      this.message,
+      this.symbols,
+      this.probabilities,
+      this.entropy,
+      this.redundancy
+    );
+  };
 }

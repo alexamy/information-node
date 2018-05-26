@@ -57,3 +57,14 @@ describe('Information#entropy', () => {
       expect(new Information(message).entropy).to.be.closeTo(expected, 0.001));
   });
 });
+
+describe('Information#redundancy', () => {
+  const tests = [['лапалуза', 0.0716167], ['фак', 4.5e-10]];
+  tests.forEach(([message, expected]) => {
+    it('test', () =>
+      expect(new Information(message).redundancy).to.be.closeTo(
+        expected,
+        0.001
+      ));
+  });
+});

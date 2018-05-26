@@ -9,7 +9,7 @@ function processFile(error, data) {
 
   const message = data;
   const info = new Information(message);
-  console.log(info.message);
+  info.showTotal();
 }
 const messagePath = process.argv[2];
 if (!messagePath) throw new Error('No path provided!');
