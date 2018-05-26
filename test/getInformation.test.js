@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { should } from 'chai';
+import { expect, should } from 'chai';
 
 import Information from '../src/getInformation.js';
 
@@ -30,11 +30,30 @@ describe('Information#countsInMessage', () => {
     ['One symbol', 'ололок', 'к', 1],
     ['More than one symbol', 'приветики', 'и', 3]
   ];
-  tests.forEach(([shouldWhat, message, symToCount, expected], i) => {
+  tests.forEach(([shouldWhat, message, symToCount, expected]) => {
     it(shouldWhat, () =>
       new Information(message)
         .countsInMessage(symToCount)
         .should.equal(expected)
     );
+  });
+});
+
+describe('Information#probabilities', () => {
+  const tests = [
+    ['лапалуза', { л: 2 / 8, а: 3 / 8, п: 1 / 8, у: 1 / 8, з: 1 / 8 }],
+    ['фак', { ф: 1 / 3, а: 1 / 3, к: 1 / 3 }]
+  ];
+  tests.forEach(([message, expected]) => {
+    it('test', () =>
+      new Information(message).probabilities.should.deep.equal(expected));
+  });
+});
+
+describe('Information#entropy', () => {
+  const tests = [['лапалуза', 2.15563906], ['фак', 1.5849625]];
+  tests.forEach(([message, expected]) => {
+    it('test', () =>
+      expect(new Information(message).entropy).to.be.closeTo(expected, 0.001));
   });
 });
