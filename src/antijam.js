@@ -7,6 +7,7 @@ export class AntiJamD3 {
       Math.log2(this.numberIC + 1 + Math.ceil(Math.log2(this.numberIC)))
     );
     this.ccpositions = this.computeCCPositions();
+    this.phraseMockup = this.makePhraseMockup();
   }
 
   computeCCPositions() {
@@ -15,6 +16,22 @@ export class AntiJamD3 {
       ccpos.push(Math.pow(2, i) - 1);
     }
     return ccpos;
+  }
+
+  makePhraseMockup() {
+    const characters = Array.from(this.codePhrase);
+    const mockup = [];
+    const length = this.numberCC + this.numberIC;
+    let idx = 0;
+    for (let i = 0; i < length; i++) {
+      if (this.ccpositions.includes(i)) {
+        mockup[i] = 'k';
+      } else {
+        mockup[i] = characters[idx];
+        idx++;
+      }
+    }
+    return mockup;
   }
 
   static getPositionsForComputeCC(order, limit) {

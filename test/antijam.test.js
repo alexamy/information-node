@@ -30,4 +30,15 @@ describe('AntiJamD3', () => {
       ]);
     });
   });
+  it('should make phrase mockup', () => {
+    new AntiJamD3(codePhrase).phraseMockup.should.deep.equal([
+      'k',
+      'k',
+      '0',
+      'k',
+      '1',
+      '0',
+      '1'
+    ]);
+  });
 });
