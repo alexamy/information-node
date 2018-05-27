@@ -16,7 +16,7 @@ export default class Information {
     message
       .trim()
       .toLowerCase()
-      .replace(/[^ а-я]/g, '');
+      .replace(/[^ а-я]/g, "");
 
   countsInMessage = symToFind =>
     Array.from(this.message).reduce(
