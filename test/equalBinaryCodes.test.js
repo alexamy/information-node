@@ -11,4 +11,13 @@ describe('EqualBinaryCoder', () => {
   it('should count right length of max binary word length', () => {
     new EqualBinaryCoder(['f', 'g', 'e', 'm', 's']).wordLength.should.equal(3);
   });
+  it('should give right codes', () => {
+    new EqualBinaryCoder(['f', 'g', 'e', 'm', 's']).codes.should.deep.equal({
+      f: '000',
+      g: '001',
+      e: '010',
+      m: '011',
+      s: '100'
+    });
+  });
 });
