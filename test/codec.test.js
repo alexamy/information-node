@@ -116,4 +116,21 @@ describe('HoffmanCodes', () => {
       });
     }
   });
+
+  describe('codes', () => {
+    const codes = [
+      {
+        probs: { probabilities: { a: 0.4, b: 0.25, c: 0.2, d: 0.1, e: 0.05 } },
+        expected: { a: '1', b: '01', c: '000', d: '0010', e: '0011' }
+      }
+    ];
+    for (let test of codes) {
+      it('should give correct codes', () => {
+        new ShannonCodes(test.probs).codes.should.deep.equal(test.expected);
+      });
+      it('should set check flag to 1', () => {
+        new ShannonCodes(test.probs).probsFlag.should.be.closeTo(1.0, 0.001);
+      });
+    }
+  });
 });

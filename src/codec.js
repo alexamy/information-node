@@ -132,6 +132,9 @@ export class ShannonCodes {
 export class HoffmanCodes {
   constructor(info) {
     this.probabilities = new Map(this.sortProbabilities(info.probabilities));
+    this.codes = {};
+    for (let k of this.probabilities.keys()) this.codes[k] = '';
+    this.makeCodes(this.probabilities, this.codes);
   }
 
   sortProbabilities(probabilities) {
@@ -141,5 +144,20 @@ export class HoffmanCodes {
     }
     keyValuePairs.sort((a, b) => a[1] - b[1]);
     return keyValuePairs;
+  }
+
+  makeCodes(probabilities, writeTo) {
+    let probs = [];
+    for (let [k, v] of probabilities.entries()) {
+      probs.push([v, k]);
+    }
+    while (probs.length > 1) {
+      const [[v1, ...keys1], [v2, ...keys2], ...others] = probs;
+      for (let k of keys1) writeTo[k] = '1' + writeTo[k];
+      for (let k of keys2) writeTo[k] = '0' + writeTo[k];
+      probs = [[v1 + v2, ...keys1, ...keys2], ...others];
+      probs.sort((a, b) => a[0] - b[0]);
+    }
+    this.probsFlag = probs[0][0]; // should be 1
   }
 }
