@@ -14,19 +14,16 @@ export class Codec {
       .map(ch => codes[ch])
       .join('');
 
-  showTotal = () => {
-    console.log(
-      JSON.stringify(
-        {
-          message: this.message,
-          codes: this.codes,
-          messageCoded: this.messageCoded
-        },
-        null,
-        2
-      )
+  total = () =>
+    JSON.stringify(
+      {
+        message: this.message,
+        codes: this.codes,
+        messageCoded: this.messageCoded
+      },
+      null,
+      2
     );
-  };
 }
 export class EqualBinaryCodes {
   constructor(symbols) {
@@ -51,17 +48,14 @@ export class EqualBinaryCodes {
     return codes;
   }
 
-  showTotal = () => {
-    console.log(
-      JSON.stringify(
-        {
-          symbols: this.symbols,
-          wordLength: this.wordLength,
-          codes: this.codes
-        },
-        null,
-        2
-      )
+  total = () =>
+    JSON.stringify(
+      {
+        symbols: this.symbols,
+        wordLength: this.wordLength,
+        codes: this.codes
+      },
+      null,
+      2
     );
-  };
 }

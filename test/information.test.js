@@ -3,7 +3,6 @@ import { Information } from '../src/information.js';
 
 const tests = [
   {
-    input: '  пРиве11Тик ',
     message: 'приветик',
     symbols: ['п', 'р', 'и', 'в', 'е', 'т', 'к'],
     probabilities: {
@@ -19,7 +18,6 @@ const tests = [
     redundancy: 0.02
   },
   {
-    input: 'лапаЛУзаHEYHO ',
     message: 'лапалуза',
     symbols: ['л', 'а', 'п', 'у', 'з'],
     probabilities: { л: 2 / 8, а: 3 / 8, п: 1 / 8, у: 1 / 8, з: 1 / 8 },
@@ -28,15 +26,8 @@ const tests = [
   }
 ];
 
-const infos = tests.map(t => new Information(t.input));
+const infos = tests.map(t => new Information(t.message));
 describe('Information', () => {
-  describe('message', () => {
-    for (let i = 0; i < infos.length; i++) {
-      it('should be trimmed, lowercase and contain only russian symbols', () => {
-        infos[i].message.should.equal(tests[i].message);
-      });
-    }
-  });
   describe('symbols', () => {
     for (let i = 0; i < infos.length; i++) {
       it('should constists only of distinct symbols', () => {
