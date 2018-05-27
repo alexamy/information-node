@@ -63,6 +63,7 @@ export class EqualBinaryCodes {
 export class ShannonCodes {
   constructor(probabilities) {
     this.probabilities = this.toMap(probabilities);
+    console.log(this.probabilities);
     this.codes = {};
     this.makeCodes(this.probabilities, this.codes);
   }
@@ -72,6 +73,7 @@ export class ShannonCodes {
     for (let key in probabilities) {
       keyValuePairs.push([key, probabilities[key]]);
     }
+    keyValuePairs = keyValuePairs.sort((a, b) => a[1] < b[1]);
     return new Map(keyValuePairs);
   }
 
