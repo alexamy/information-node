@@ -32,6 +32,10 @@ describe('ShannonCodes', () => {
       {
         probs: { b: 0.1, a: 0.1, c: 0.1, d: 0.1 },
         expected: new Map([['b', 0.1], ['a', 0.1], ['c', 0.1], ['d', 0.1]])
+      },
+      {
+        probs: { b: 0.1, a: 0.1, c: 0.1, d: 0.5 },
+        expected: new Map([['d', 0.5], ['b', 0.1], ['a', 0.1], ['c', 0.1]])
       }
     ];
     for (let test of probabilities) {
@@ -69,7 +73,7 @@ describe('ShannonCodes', () => {
       },
       {
         probs: { a: 0.1, b: 0.1, c: 0.1, d: 0.1, e: 0.5 },
-        expected: { a: '0', b: '0', c: '0', d: '0', e: '1' }
+        expected: { e: '0', a: '1', b: '1', c: '1', d: '1' }
       }
     ];
     for (let test of slices) {

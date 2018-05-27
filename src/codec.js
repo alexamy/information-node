@@ -102,7 +102,7 @@ export class ShannonCodes {
     const symbols = {};
     const whereToSlice = this.getBestSliceIndex(probabilities);
     let idx = 0;
-    for (let [sym, val] in probabilities) {
+    for (let [sym, val] of probabilities) {
       symbols[sym] = idx <= whereToSlice ? '0' : '1';
       idx++;
     }
