@@ -1,6 +1,6 @@
 import { readFile } from 'fs';
 import { Information } from './information.js';
-import { Codec, EqualBinaryCodes } from './codec.js';
+import { Codec, EqualBinaryCodes, ShannonCodes } from './codec.js';
 
 const prepareMessage = message =>
   message
@@ -24,7 +24,11 @@ function processFile(error, data) {
   const codedByEqualBinaryInfo = new Information(
     codedByEqualBinary.messageCoded
   );
+  const codedByShannon = new Codec(message, ShannonCodes);
+  const codedByShannonInfo = new Information(codedByShannon.codes);
   console.log('information', info.total());
   console.log('equalBinaryCoded', codedByEqualBinary.total());
   console.log('equalBinaryCoded information', codedByEqualBinaryInfo.total());
+  console.log('shannonCoded', codedByShannon.total());
+  console.log('shannonCoded information', codedByShannonInfo.total());
 }
