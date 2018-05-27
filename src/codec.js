@@ -64,6 +64,7 @@ export class ShannonCodes {
   constructor(probabilities) {
     this.probabilities = this.toMap(probabilities);
     this.codes = {};
+    for (let k of this.probabilities.keys()) this.codes[k] = '';
     this.makeCodes(this.probabilities, this.codes);
   }
 
@@ -102,7 +103,7 @@ export class ShannonCodes {
     const symbols = {};
     const whereToSlice = this.getBestSliceIndex(probabilities);
     let idx = 0;
-    for (let [sym, val] of probabilities) {
+    for (let sym of probabilities.keys()) {
       symbols[sym] = idx <= whereToSlice ? '0' : '1';
       idx++;
     }
@@ -114,15 +115,15 @@ export class ShannonCodes {
     for (let key in sliced) writeTo[key] = writeTo[key] + sliced[key];
 
     const whereToSlice = this.getBestSliceIndex(probabilities);
-    const first = {};
-    const last = {};
+    const first = new Map();
+    const last = new Map();
     let idx = 0;
-    for (let prob in probabilities) {
-      if (idx <= whereToSlice) first[prob] = probabilities[prob];
-      else last[prob] = probabilities[prob];
+    for (let [k, v] of probabilities) {
+      if (idx <= whereToSlice) first.set(k, v);
+      else last.set(k, v);
       idx++;
     }
-    if (Object.values(first).length > 1) this.makeCodes(first, writeTo);
-    if (Object.values(last).length > 1) this.makeCodes(last, writeTo);
+    if (first.size > 1) this.makeCodes(first, writeTo);
+    if (last.size > 1) this.makeCodes(last, writeTo);
   }
 }
