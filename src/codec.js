@@ -99,28 +99,19 @@ export class ShannonCodes {
     return idx;
   }
 
-  sliceProbsNice(probabilities) {
-    const symbols = {};
-    const whereToSlice = this.getBestSliceIndex(probabilities);
-    let idx = 0;
-    for (let sym of probabilities.keys()) {
-      symbols[sym] = idx <= whereToSlice ? '0' : '1';
-      idx++;
-    }
-    return symbols;
-  }
-
   makeCodes(probabilities, writeTo) {
-    const sliced = this.sliceProbsNice(probabilities);
-    for (let key in sliced) writeTo[key] = writeTo[key] + sliced[key];
-
     const whereToSlice = this.getBestSliceIndex(probabilities);
     const first = new Map();
     const last = new Map();
     let idx = 0;
     for (let [k, v] of probabilities) {
-      if (idx <= whereToSlice) first.set(k, v);
-      else last.set(k, v);
+      if (idx <= whereToSlice) {
+        writeTo[k] += '0';
+        first.set(k, v);
+      } else {
+        writeTo[k] += '1';
+        last.set(k, v);
+      }
       idx++;
     }
     if (first.size > 1) this.makeCodes(first, writeTo);

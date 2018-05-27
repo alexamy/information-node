@@ -61,30 +61,6 @@ describe('ShannonCodes', () => {
       });
     }
   });
-  describe('#sliceProbsNice', () => {
-    const slices = [
-      {
-        probs: { a: 0.2, b: 0.1, c: 0.05 },
-        expected: { a: '0', b: '1', c: '1' }
-      },
-      {
-        probs: { a: 0.1, b: 0.1, c: 0.1, d: 0.1 },
-        expected: { a: '0', b: '0', c: '1', d: '1' }
-      },
-      {
-        probs: { a: 0.1, b: 0.1, c: 0.1, d: 0.1, e: 0.5 },
-        expected: { e: '0', a: '1', b: '1', c: '1', d: '1' }
-      }
-    ];
-    for (let test of slices) {
-      it('should give correct zeroes and ones', () => {
-        let codes = new ShannonCodes(test.probs);
-        codes
-          .sliceProbsNice(codes.probabilities)
-          .should.deep.equal(test.expected);
-      });
-    }
-  });
 
   describe('codes', () => {
     const codes = [
