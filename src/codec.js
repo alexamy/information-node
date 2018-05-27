@@ -128,3 +128,13 @@ export class ShannonCodes {
       2
     );
 }
+
+export class HoffmanCodes {
+  constructor(info) {
+    this.probabilities = new Map(this.sortProbabilities(info.probabilities));
+  }
+
+  sortProbabilities(probabilities) {
+    return [];
+  }
+}

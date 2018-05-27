@@ -1,5 +1,10 @@
 import 'chai/register-should';
-import { Codec, EqualBinaryCodes, ShannonCodes } from '../src/codec.js';
+import {
+  Codec,
+  EqualBinaryCodes,
+  ShannonCodes,
+  HoffmanCodes
+} from '../src/codec.js';
 
 describe('Codec', () => {
   it('should code message right by EqualBinaryCodes', () => {
@@ -86,6 +91,28 @@ describe('ShannonCodes', () => {
     for (let test of codes) {
       it('should give correct codes', () => {
         new ShannonCodes(test.probs).codes.should.deep.equal(test.expected);
+      });
+    }
+  });
+});
+
+describe('HoffmanCodes', () => {
+  describe('#sortProbabilites', () => {
+    const codes = [
+      {
+        probs: { probabilities: { a: 0.1, b: 0.2 } },
+        expected: [['a', 0.1], ['b', 0.2]]
+      },
+      {
+        probs: { probabilities: { a: 0.4, b: 0.25, c: 0.2, d: 0.1, e: 0.05 } },
+        expected: [['e', 0.05], ['d', 0.1], ['c', 0.2], ['b', 0.25], ['a', 0.4]]
+      }
+    ];
+    for (let test of codes) {
+      it('should sort probabilities in ascending order', () => {
+        new HoffmanCodes(test.probs)
+          .sortProbabilities(test.probs)
+          .should.deep.equal(test.expected);
       });
     }
   });
