@@ -41,4 +41,7 @@ describe('AntiJamD3', () => {
       '1'
     ]);
   });
+  it('should make right phrase', () => {
+    new AntiJamD3(codePhrase).phrase.should.equal('0100101');
+  });
 });

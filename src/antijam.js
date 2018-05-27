@@ -6,8 +6,10 @@ export class AntiJamD3 {
     this.numberCC = Math.ceil(
       Math.log2(this.numberIC + 1 + Math.ceil(Math.log2(this.numberIC)))
     );
+    this.length = this.numberCC + this.numberIC;
     this.ccpositions = this.computeCCPositions();
     this.phraseMockup = this.makePhraseMockup();
+    this.phrase = this.makePhrase();
   }
 
   computeCCPositions() {
@@ -21,9 +23,8 @@ export class AntiJamD3 {
   makePhraseMockup() {
     const characters = Array.from(this.codePhrase);
     const mockup = [];
-    const length = this.numberCC + this.numberIC;
     let idx = 0;
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < this.length; i++) {
       if (this.ccpositions.includes(i)) {
         mockup[i] = 'k';
       } else {
@@ -34,6 +35,9 @@ export class AntiJamD3 {
     return mockup;
   }
 
+  makePhrase() {
+    return '';
+  }
   static getPositionsForComputeCC(order, limit) {
     if (order <= 0) throw new Error('Order must be greater than 0');
     if (limit <= 0) throw new Error('Limit must be greater than 0');
