@@ -69,4 +69,9 @@ export class AntiJamD3 {
     }
     return result;
   }
+
+  static makeD4(codePhrase) {
+    const count1s = Array.from(codePhrase).filter(val => val === '1').length;
+    return count1s % 2 === 0 ? codePhrase + '0' : codePhrase + '1';
+  }
 }

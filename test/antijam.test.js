@@ -45,3 +45,10 @@ describe('AntiJamD3', () => {
     new AntiJamD3(codePhrase).phrase.should.equal('0100101');
   });
 });
+
+describe('AntiJamD3', () => {
+  it('should make right D4 code', () => {
+    AntiJamD3.makeD4('0101').should.equal('01010');
+    AntiJamD3.makeD4('0111').should.equal('01111');
+  });
+});
