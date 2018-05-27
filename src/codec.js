@@ -86,4 +86,8 @@ export class ShannonCodes {
     }
     return idx;
   }
+
+  static sliceProbsNice(probabilities) {
+    return {};
+  }
 }
