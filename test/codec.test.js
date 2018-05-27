@@ -126,10 +126,10 @@ describe('HoffmanCodes', () => {
     ];
     for (let test of codes) {
       it('should give correct codes', () => {
-        new ShannonCodes(test.probs).codes.should.deep.equal(test.expected);
+        new HoffmanCodes(test.probs).codes.should.deep.equal(test.expected);
       });
       it('should set check flag to 1', () => {
-        new ShannonCodes(test.probs).probsFlag.should.be.closeTo(1.0, 0.001);
+        new HoffmanCodes(test.probs).probsFlag.should.be.closeTo(1.0, 0.001);
       });
     }
   });
