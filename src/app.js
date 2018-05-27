@@ -1,6 +1,6 @@
 import { readFile } from 'fs';
-import Information from './information.js';
-import EqualBinaryCodes from './equalBinaryCodes.js';
+import { Information } from './information.js';
+import { Codec, EqualBinaryCodes } from './codec.js';
 
 const messagePath = process.argv[2];
 if (!messagePath) throw new Error('No path provided!');

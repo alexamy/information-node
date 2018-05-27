@@ -1,5 +1,5 @@
 import 'chai/register-should';
-import Information from '../src/information.js';
+import { Information } from '../src/information.js';
 
 const tests = [
   {

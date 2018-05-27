@@ -1,11 +1,9 @@
-export default class EqualBinaryCoder {
+// all codecs must be called through Codec
+export class Codec {
   constructor(symbols) {
     this.assertSymbolsArray(symbols);
     this.symbols = symbols;
-    this.wordLength = Math.ceil(Math.log2(symbols.length));
-    this.codes = this.makeCodes(this.symbols, this.wordLength);
   }
-
   assertSymbolsArray(symbols) {
     if (symbols.length === 0) {
       throw new Error('There is must be one symbol at least');
@@ -14,6 +12,13 @@ export default class EqualBinaryCoder {
     if (distinct.size !== symbols.length) {
       throw new Error('Symbols array must containt only distinct elements!');
     }
+  }
+}
+export class EqualBinaryCodes {
+  constructor(symbols) {
+    this.symbols = symbols;
+    this.wordLength = Math.ceil(Math.log2(symbols.length));
+    this.codes = this.makeCodes(this.symbols, this.wordLength);
   }
 
   makeCodes(symbols, wordLength) {

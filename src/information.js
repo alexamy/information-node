@@ -1,4 +1,4 @@
-export default class Information {
+export class Information {
   constructor(message) {
     this.message = this.prepareMessage(message);
     this.symbols = Array.from(new Set(this.message));
