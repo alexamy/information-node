@@ -37,10 +37,19 @@ export class AntiJamD3 {
 
   makePhrase() {
     let phrase = '';
-    for (let i = 0; i < this.length; i++) {
-      const sym = this.phraseMockup[i];
+    let order = 1;
+    for (let sym of this.phraseMockup) {
       if (sym === 'k') {
-        phrase += sym;
+        const positions = AntiJamD3.getPositionsForComputeCC(
+          order,
+          this.length
+        );
+        const ccvalue = positions
+          .map(pos => this.phraseMockup[pos])
+          .filter(el => el !== 'k')
+          .reduce((acc, val) => acc ^ Number(val), 0);
+        phrase += ccvalue;
+        order++;
       } else {
         phrase += sym;
       }
