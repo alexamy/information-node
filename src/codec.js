@@ -117,16 +117,6 @@ export class ShannonCodes {
     if (first.size > 1) this.makeCodes(first, writeTo);
     if (last.size > 1) this.makeCodes(last, writeTo);
   }
-
-  total = () =>
-    JSON.stringify(
-      {
-        probabilities: this.probabilities,
-        codes: this.codes
-      },
-      null,
-      2
-    );
 }
 
 export class HoffmanCodes {
