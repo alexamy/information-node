@@ -23,15 +23,37 @@ describe('EqualBinaryCodes', () => {
 });
 
 describe('ShannonCodes', () => {
+  describe('probabilities', () => {
+    const probabilities = [
+      {
+        probs: { a: 0.2, b: 0.1, c: 0.05 },
+        expected: new Map([['a', 0.2], ['b', 0.1], ['c', 0.05]])
+      },
+      {
+        probs: { b: 0.1, a: 0.1, c: 0.1, d: 0.1 },
+        expected: new Map([['b', 0.1], ['a', 0.1], ['c', 0.1], ['d', 0.1]])
+      }
+    ];
+    for (let test of probabilities) {
+      it('should converts to Map correctly', () => {
+        new ShannonCodes(test.probs).probabilities.should.deep.equal(
+          test.expected
+        );
+      });
+    }
+  });
   describe('#getBestSliceIndex', () => {
     const slices = [
       { probs: { a: 0.2, b: 0.1, c: 0.05 }, expected: 0 },
       { probs: { a: 0.1, b: 0.1, c: 0.1, d: 0.1 }, expected: 1 },
-      { probs: { a: 0.1, b: 0.1, c: 0.1, d: 0.1, e: 0.5 }, expected: 3 }
+      { probs: { a: 0.1, b: 0.1, c: 0.1, d: 0.1, e: 0.5 }, expected: 0 }
     ];
     for (let test of slices) {
       it('should give best slice', () => {
-        ShannonCodes.getBestSliceIndex(test.probs).should.equal(test.expected);
+        let codes = new ShannonCodes(test.probs);
+        codes
+          .getBestSliceIndex(codes.probabilities)
+          .should.equal(test.expected);
       });
     }
   });
@@ -52,29 +74,10 @@ describe('ShannonCodes', () => {
     ];
     for (let test of slices) {
       it('should give correct zeroes and ones', () => {
-        ShannonCodes.sliceProbsNice(test.probs).should.deep.equal(
-          test.expected
-        );
-      });
-    }
-  });
-
-  describe('probabilities', () => {
-    const probabilities = [
-      {
-        probs: { a: 0.2, b: 0.1, c: 0.05 },
-        expected: new Map([['a', 0.2], ['b', 0.1], ['c', 0.05]])
-      },
-      {
-        probs: { b: 0.1, a: 0.1, c: 0.1, d: 0.1 },
-        expected: new Map([['b', 0.1], ['a', 0.1], ['c', 0.1], ['d', 0.1]])
-      }
-    ];
-    for (let test of probabilities) {
-      it('should converts to Map correctly', () => {
-        new ShannonCodes(test.probs).probabilities.should.deep.equal(
-          test.expected
-        );
+        let codes = new ShannonCodes(test.probs);
+        codes
+          .sliceProbsNice(codes.probabilities)
+          .should.deep.equal(test.expected);
       });
     }
   });

@@ -63,7 +63,6 @@ export class EqualBinaryCodes {
 export class ShannonCodes {
   constructor(probabilities) {
     this.probabilities = this.toMap(probabilities);
-    console.log(this.probabilities);
     this.codes = {};
     this.makeCodes(this.probabilities, this.codes);
   }
@@ -77,8 +76,8 @@ export class ShannonCodes {
     return new Map(keyValuePairs);
   }
 
-  static getBestSliceIndex(probabilities) {
-    const asArray = Object.values(probabilities);
+  getBestSliceIndex(probabilities) {
+    const asArray = Array.from(probabilities.values());
     const sum = asArray.reduce((acc, val) => acc + val, 0);
     let sumAfter = sum;
     let sumBefore = 0;
@@ -99,11 +98,11 @@ export class ShannonCodes {
     return idx;
   }
 
-  static sliceProbsNice(probabilities) {
+  sliceProbsNice(probabilities) {
     const symbols = {};
-    const whereToSlice = ShannonCodes.getBestSliceIndex(probabilities);
+    const whereToSlice = this.getBestSliceIndex(probabilities);
     let idx = 0;
-    for (let sym in probabilities) {
+    for (let [sym, val] in probabilities) {
       symbols[sym] = idx <= whereToSlice ? '0' : '1';
       idx++;
     }
@@ -111,10 +110,10 @@ export class ShannonCodes {
   }
 
   makeCodes(probabilities, writeTo) {
-    const sliced = ShannonCodes.sliceProbsNice(probabilities);
+    const sliced = this.sliceProbsNice(probabilities);
     for (let key in sliced) writeTo[key] = writeTo[key] + sliced[key];
 
-    const whereToSlice = ShannonCodes.getBestSliceIndex(probabilities);
+    const whereToSlice = this.getBestSliceIndex(probabilities);
     const first = {};
     const last = {};
     let idx = 0;
