@@ -88,6 +88,13 @@ export class ShannonCodes {
   }
 
   static sliceProbsNice(probabilities) {
-    return {};
+    const symbols = {};
+    const whereToSlice = ShannonCodes.getBestSliceIndex(probabilities);
+    let idx = 0;
+    for (let sym in probabilities) {
+      symbols[sym] = idx <= whereToSlice ? '0' : '1';
+      idx++;
+    }
+    return symbols;
   }
 }
