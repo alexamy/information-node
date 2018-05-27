@@ -59,19 +59,41 @@ describe('ShannonCodes', () => {
     }
   });
 
-  const codes = [
-    {
-      probs: { a: 0.1, b: 0.1 },
-      expected: { a: '0', b: '1' }
-    },
-    {
-      probs: { a: 0.4, b: 0.25, c: 0.2, d: 0.1, e: 0.05 },
-      expected: { a: '0', b: '10', c: '110', d: '1110', e: '1111' }
+  describe('probabilities', () => {
+    const probabilities = [
+      {
+        probs: { a: 0.2, b: 0.1, c: 0.05 },
+        expected: new Map([['a', 0.2], ['b', 0.1], ['c', 0.05]])
+      },
+      {
+        probs: { b: 0.1, a: 0.1, c: 0.1, d: 0.1 },
+        expected: new Map([['b', 0.1], ['a', 0.1], ['c', 0.1], ['d', 0.1]])
+      }
+    ];
+    for (let test of probabilities) {
+      it('should converts to Map correctly', () => {
+        new ShannonCodes(test.probs).probabilities.should.deep.equal(
+          test.expected
+        );
+      });
     }
-  ];
-  for (let test of codes) {
-    it('should give correct codes', () => {
-      new ShannonCodes(test.probs).codes.should.deep.equal(test.expected);
-    });
-  }
+  });
+
+  // describe('codes', () => {
+  //   const codes = [
+  //     {
+  //       probs: { a: 0.1, b: 0.1 },
+  //       expected: { a: '0', b: '1' }
+  //     },
+  //     {
+  //       probs: { a: 0.4, b: 0.25, c: 0.2, d: 0.1, e: 0.05 },
+  //       expected: { a: '0', b: '10', c: '110', d: '1110', e: '1111' }
+  //     }
+  //   ];
+  //   for (let test of codes) {
+  //     it('should give correct codes', () => {
+  //       new ShannonCodes(test.probs).codes.should.deep.equal(test.expected);
+  //     });
+  //   }
+  // });
 });

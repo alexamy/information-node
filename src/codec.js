@@ -62,7 +62,17 @@ export class EqualBinaryCodes {
 
 export class ShannonCodes {
   constructor(probabilities) {
-    this.probabilities = probabilities;
+    this.probabilities = this.toMap(probabilities);
+    this.codes = {};
+    this.makeCodes(this.probabilities, this.codes);
+  }
+
+  toMap(probabilities) {
+    let keyValuePairs = [];
+    for (let key in probabilities) {
+      keyValuePairs.push([key, probabilities[key]]);
+    }
+    return new Map(keyValuePairs);
   }
 
   static getBestSliceIndex(probabilities) {
@@ -96,5 +106,22 @@ export class ShannonCodes {
       idx++;
     }
     return symbols;
+  }
+
+  makeCodes(probabilities, writeTo) {
+    const sliced = ShannonCodes.sliceProbsNice(probabilities);
+    for (let key in sliced) writeTo[key] = writeTo[key] + sliced[key];
+
+    const whereToSlice = ShannonCodes.getBestSliceIndex(probabilities);
+    const first = {};
+    const last = {};
+    let idx = 0;
+    for (let prob in probabilities) {
+      if (idx <= whereToSlice) first[prob] = probabilities[prob];
+      else last[prob] = probabilities[prob];
+      idx++;
+    }
+    if (Object.values(first).length > 1) this.makeCodes(first, writeTo);
+    if (Object.values(last).length > 1) this.makeCodes(last, writeTo);
   }
 }
