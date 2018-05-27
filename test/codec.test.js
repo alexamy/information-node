@@ -26,7 +26,8 @@ describe('ShannonCodes', () => {
   describe('#getBestSliceIndex', () => {
     const slices = [
       { probs: { a: 0.2, b: 0.1, c: 0.05 }, expected: 0 },
-      { probs: { a: 0.1, b: 0.1, c: 0.1, d: 0.1 }, expected: 1 }
+      { probs: { a: 0.1, b: 0.1, c: 0.1, d: 0.1 }, expected: 1 },
+      { probs: { a: 0.1, b: 0.1, c: 0.1, d: 0.1, e: 0.5 }, expected: 3 }
     ];
     for (let test of slices) {
       it('should give best slice', () => {
