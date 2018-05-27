@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "babel-node ./src/app.js ./data/message.txt",
-    "test": "mocha --require babel-core/register"
+    "test": "mocha --watch --require babel-core/register"
   },
   "author": "alexch",
   "license": "MIT"
