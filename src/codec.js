@@ -135,6 +135,11 @@ export class HoffmanCodes {
   }
 
   sortProbabilities(probabilities) {
-    return [];
+    let keyValuePairs = [];
+    for (let key in probabilities) {
+      keyValuePairs.push([key, probabilities[key]]);
+    }
+    keyValuePairs.sort((a, b) => a[1] - b[1]);
+    return keyValuePairs;
   }
 }

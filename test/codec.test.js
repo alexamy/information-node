@@ -111,7 +111,7 @@ describe('HoffmanCodes', () => {
     for (let test of codes) {
       it('should sort probabilities in ascending order', () => {
         new HoffmanCodes(test.probs)
-          .sortProbabilities(test.probs)
+          .sortProbabilities(test.probs.probabilities)
           .should.deep.equal(test.expected);
       });
     }
