@@ -16,4 +16,18 @@ export class AntiJamD3 {
     }
     return ccpos;
   }
+
+  static getPositionsForComputeCC(order, limit) {
+    if (order <= 0) throw new Error('Order must be greater than 0');
+    if (limit <= 0) throw new Error('Limit must be greater than 0');
+
+    const orderBitwise = Math.pow(2, order - 1);
+    const result = [];
+    let idx = 1;
+    while (result.length < limit) {
+      if (idx & orderBitwise) result.push(idx);
+      idx++;
+    }
+    return result;
+  }
 }
