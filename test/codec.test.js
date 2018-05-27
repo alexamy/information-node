@@ -58,4 +58,20 @@ describe('ShannonCodes', () => {
       });
     }
   });
+
+  const codes = [
+    {
+      probs: { a: 0.1, b: 0.1 },
+      expected: { a: '0', b: '1' }
+    },
+    {
+      probs: { a: 0.4, b: 0.25, c: 0.2, d: 0.1, e: 0.05 },
+      expected: { a: '0', b: '10', c: '110', d: '1110', e: '1111' }
+    }
+  ];
+  for (let test of codes) {
+    it('should give correct codes', () => {
+      new ShannonCodes(test.probs).codes.should.deep.equal(test.expected);
+    });
+  }
 });
