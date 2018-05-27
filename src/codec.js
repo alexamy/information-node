@@ -84,7 +84,6 @@ export class ShannonCodes {
       diffOld = diffNew;
       idx++;
     }
-
     return idx;
   }
 }
