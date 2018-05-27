@@ -2,11 +2,9 @@ import 'chai/register-should';
 import { Codec, EqualBinaryCodes } from '../src/codec.js';
 
 describe('Codec', () => {
-  it('should throw error if there are duplicates in array', () => {
-    (() => new Codec(['f', 'f', 'g'])).should.throw();
-  });
-  it('should throw error if array is empty', () => {
-    (() => new Codec([])).should.throw();
+  it('should code message right by EqualBinaryCodes', () => {
+    const codec = new Codec('прив', EqualBinaryCodes);
+    codec.messageCoded.should.equal('00011011');
   });
 });
 describe('EqualBinaryCodes', () => {

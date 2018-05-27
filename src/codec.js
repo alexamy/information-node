@@ -1,18 +1,32 @@
+import { Information } from './information.js';
+
 // all codecs must be called through Codec
 export class Codec {
-  constructor(symbols) {
-    this.assertSymbolsArray(symbols);
-    this.symbols = symbols;
+  constructor(message, coder) {
+    this.info = new Information(message);
+    this.message = message;
+    this.codes = new coder(this.info.symbols).codes;
+    this.messageCoded = this.code(this.message, this.codes);
   }
-  assertSymbolsArray(symbols) {
-    if (symbols.length === 0) {
-      throw new Error('There is must be one symbol at least');
-    }
-    const distinct = new Set(symbols);
-    if (distinct.size !== symbols.length) {
-      throw new Error('Symbols array must containt only distinct elements!');
-    }
-  }
+
+  code = (message, codes) =>
+    Array.from(message)
+      .map(ch => codes[ch])
+      .join('');
+
+  showTotal = () => {
+    console.log(
+      JSON.stringify(
+        {
+          message: this.message,
+          codes: this.codes,
+          messageCoded: this.messageCoded
+        },
+        null,
+        2
+      )
+    );
+  };
 }
 export class EqualBinaryCodes {
   constructor(symbols) {
