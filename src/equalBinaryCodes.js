@@ -31,4 +31,18 @@ export default class EqualBinaryCoder {
     });
     return codes;
   }
+
+  showTotal = () => {
+    console.log(
+      JSON.stringify(
+        {
+          symbols: this.symbols,
+          wordLength: this.wordLength,
+          codes: this.codes
+        },
+        null,
+        2
+      )
+    );
+  };
 }

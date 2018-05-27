@@ -43,11 +43,17 @@ export default class Information {
 
   showTotal = () => {
     console.log(
-      this.message,
-      this.symbols,
-      this.probabilities,
-      this.entropy,
-      this.redundancy
+      JSON.stringify(
+        {
+          message: this.message,
+          symbols: this.symbols,
+          probabilities: this.probabilities,
+          entropy: this.entropy,
+          redundancy: this.redundancy
+        },
+        null,
+        2
+      )
     );
   };
 }
