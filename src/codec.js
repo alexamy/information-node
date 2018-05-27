@@ -66,6 +66,25 @@ export class ShannonCodes {
   }
 
   static getBestSliceIndex(probabilities) {
-    return 0;
+    const asArray = Object.values(probabilities);
+    const sum = asArray.reduce((acc, val) => acc + val, 0);
+    let sumAfter = sum;
+    let sumBefore = 0;
+    let idx = 0;
+    let diffOld = Infinity;
+    let diffNew = 0;
+    for (let prob of asArray) {
+      sumBefore += prob;
+      sumAfter -= prob;
+      diffNew = Math.abs(sumBefore - sumAfter);
+      if (diffNew > diffOld) {
+        idx = idx - 1;
+        break;
+      }
+      diffOld = diffNew;
+      idx++;
+    }
+
+    return idx;
   }
 }
