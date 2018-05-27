@@ -6,6 +6,7 @@ import {
   ShannonCodes,
   HoffmanCodes
 } from './codec.js';
+import { AntiJamD3Codec } from './antijamCodec.js';
 
 const prepareMessage = message =>
   message
@@ -23,11 +24,13 @@ function processFile(error, data) {
     return error;
   }
 
+  // alphabetically
   const message = prepareMessage(data);
   const info = new Information(message);
   console.log('information', info.total());
 
-  const codecs = [EqualBinaryCodes, ShannonCodes, HoffmanCodes];
+  // codecs
+  const codecs = [EqualBinaryCodes, ShannonCodes, HoffmanCodes, AntiJamD3Codec];
   for (let codec of codecs) {
     const codedMsg = new Codec(message, codec);
     const codedMsgInfo = new Information(codedMsg.messageCoded);

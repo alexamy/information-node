@@ -10,7 +10,6 @@ export class AntiJamD3 {
     this.ccpositions = this.computeCCPositions();
     this.phraseMockup = this.makePhraseMockup();
     this.phrase = this.makePhrase();
-    return this.phrase;
   }
 
   computeCCPositions() {
