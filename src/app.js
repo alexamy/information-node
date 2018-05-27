@@ -25,19 +25,13 @@ function processFile(error, data) {
 
   const message = prepareMessage(data);
   const info = new Information(message);
-  const codedByEqualBinary = new Codec(message, EqualBinaryCodes);
-  const codedByEqualBinaryInfo = new Information(
-    codedByEqualBinary.messageCoded
-  );
-  const codedByShannon = new Codec(message, ShannonCodes);
-  const codedByShannonInfo = new Information(codedByShannon.messageCoded);
-  const codedByHoffman = new Codec(message, HoffmanCodes);
-  const codedByHoffmanInfo = new Information(codedByHoffman.messageCoded);
   console.log('information', info.total());
-  console.log('equalBinaryCoded', codedByEqualBinary.total());
-  console.log('equalBinaryCoded information', codedByEqualBinaryInfo.total());
-  console.log('shannonCoded', codedByShannon.total());
-  console.log('shannonCoded information', codedByShannonInfo.total());
-  console.log('hoffmanCoded', codedByHoffman.total());
-  console.log('hoffmanCoded information', codedByHoffmanInfo.total());
+
+  const codecs = [EqualBinaryCodes, ShannonCodes, HoffmanCodes];
+  for (let codec of codecs) {
+    const codedMsg = new Codec(message, codec);
+    const codedMsgInfo = new Information(codedMsg.messageCoded);
+    console.log(codedMsg.total());
+    console.log(codedMsgInfo.total());
+  }
 }
