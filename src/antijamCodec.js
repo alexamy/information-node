@@ -10,3 +10,14 @@ export class AntiJamD3Codec {
     }
   }
 }
+
+export class AntiJamD4Codec {
+  constructor(info) {
+    this.codesOld = new EqualBinaryCodes(info).codes;
+    this.codes = {};
+    for (let key in this.codesOld) {
+      this.codes[key] = new AntiJamD3(this.codesOld[key]).phrase;
+      this.codes[key] = AntiJamD3.makeD4(this.codes[key]);
+    }
+  }
+}
