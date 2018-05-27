@@ -18,10 +18,16 @@ describe('AntiJamD3', () => {
       (() => AntiJamD3.getPositionsForComputeCC(1, -1)).should.throw();
     });
     it('should give right answer', () => {
-      AntiJamD3.getPositionsForComputeCC(1, 4).should.deep.equal([1, 3, 5, 7]);
-      AntiJamD3.getPositionsForComputeCC(2, 4).should.deep.equal([2, 3, 6, 7]);
-      AntiJamD3.getPositionsForComputeCC(2, 1).should.deep.equal([2]);
-      AntiJamD3.getPositionsForComputeCC(3, 3).should.deep.equal([4, 5, 6]);
+      AntiJamD3.getPositionsForComputeCC(1, 4).should.deep.equal([1, 3]);
+      AntiJamD3.getPositionsForComputeCC(2, 4).should.deep.equal([2, 3]);
+      AntiJamD3.getPositionsForComputeCC(2, 1).should.deep.equal([]);
+      AntiJamD3.getPositionsForComputeCC(3, 12).should.deep.equal([
+        4,
+        5,
+        6,
+        7,
+        12
+      ]);
     });
   });
 });

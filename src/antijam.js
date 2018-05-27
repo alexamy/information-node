@@ -24,7 +24,7 @@ export class AntiJamD3 {
     const orderBitwise = Math.pow(2, order - 1);
     const result = [];
     let idx = 1;
-    while (result.length < limit) {
+    while (idx <= limit) {
       if (idx & orderBitwise) result.push(idx);
       idx++;
     }
