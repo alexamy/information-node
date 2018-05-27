@@ -1,65 +1,68 @@
 import 'chai/register-should';
 import Information from '../src/getInformation.js';
 
-describe('');
+const tests = [
+  {
+    input: '  пРиве11Тик ',
+    message: 'приветик',
+    symbols: ['п', 'р', 'и', 'в', 'е', 'т', 'к'],
+    probabilities: {
+      п: 1 / 8,
+      р: 1 / 8,
+      и: 2 / 8,
+      в: 1 / 8,
+      е: 1 / 8,
+      т: 1 / 8,
+      к: 1 / 8
+    },
+    entropy: 2.75,
+    redundancy: 0.02
+  },
+  {
+    input: 'лапаЛУзаHEYHO ',
+    message: 'лапалуза',
+    symbols: ['л', 'а', 'п', 'у', 'з'],
+    probabilities: { л: 2 / 8, а: 3 / 8, п: 1 / 8, у: 1 / 8, з: 1 / 8 },
+    entropy: 2.155,
+    redundancy: 0.071
+  }
+];
 
-describe('Information#message', () => {
-  const tests = [
-    ['should trim', '  \tпривет      ', 'привет'],
-    ['should lowercase', 'прИВет', 'привет'],
-    ['should replace non-russian symbols', 'AFASsgdCCCприв###ет124', 'привет'],
-    ['should save original', 'поле полное полыни', 'поле полное полыни'],
-    [
-      'should pass final check',
-      'Поле, полное полыни, выпало полоть Полине.',
-      'поле полное полыни выпало полоть полине'
-    ]
-  ];
-  tests.forEach(([shouldWhat, message, expected]) => {
-    it(shouldWhat, () =>
-      new Information(message).message.should.equal(expected)
-    );
+const infos = tests.map(t => new Information(t.input));
+describe('Information', () => {
+  describe('message', () => {
+    for (let i = 0; i < infos.length; i++) {
+      it('should be trimmed, lowercase and contain only russian symbols', () => {
+        infos[i].message.should.equal(tests[i].message);
+      });
+    }
   });
-});
-
-describe('Information#countsInMessage', () => {
-  const tests = [
-    ['Zero symbols', 'лапалуза', 'ф', 0],
-    ['One symbol', 'ололок', 'к', 1],
-    ['More than one symbol', 'приветики', 'и', 3]
-  ];
-  tests.forEach(([shouldWhat, message, symToCount, expected]) => {
-    it(shouldWhat, () =>
-      new Information(message)
-        .countsInMessage(symToCount)
-        .should.equal(expected)
-    );
+  describe('symbols', () => {
+    for (let i = 0; i < infos.length; i++) {
+      it('should constists only of distinct symbols', () => {
+        infos[i].symbols.should.deep.equal(tests[i].symbols);
+      });
+    }
   });
-});
-
-describe('Information#probabilities', () => {
-  const tests = [
-    ['лапалуза', { л: 2 / 8, а: 3 / 8, п: 1 / 8, у: 1 / 8, з: 1 / 8 }],
-    ['фак', { ф: 1 / 3, а: 1 / 3, к: 1 / 3 }]
-  ];
-  tests.forEach(([message, expected]) => {
-    it('test', () =>
-      new Information(message).probabilities.should.deep.equal(expected));
+  describe('probabilities', () => {
+    for (let i = 0; i < infos.length; i++) {
+      it('should contain right probabilities', () => {
+        infos[i].probabilities.should.deep.equal(tests[i].probabilities);
+      });
+    }
   });
-});
-
-describe('Information#entropy', () => {
-  const tests = [['лапалуза', 2.15563906], ['фак', 1.5849625]];
-  tests.forEach(([message, expected]) => {
-    it('test', () =>
-      new Information(message).entropy.should.be.closeTo(expected, 0.001));
+  describe('entropy', () => {
+    for (let i = 0; i < infos.length; i++) {
+      it('should be counted right', () => {
+        infos[i].entropy.should.be.closeTo(tests[i].entropy, 0.01);
+      });
+    }
   });
-});
-
-describe('Information#redundancy', () => {
-  const tests = [['лапалуза', 0.0716167], ['фак', 4.5e-10]];
-  tests.forEach(([message, expected]) => {
-    it('test', () =>
-      new Information(message).redundancy.should.be.closeTo(expected, 0.001));
+  describe('redundacy', () => {
+    for (let i = 0; i < infos.length; i++) {
+      it('should be counted right', () => {
+        infos[i].redundancy.should.be.closeTo(tests[i].redundancy, 0.01);
+      });
+    }
   });
 });
