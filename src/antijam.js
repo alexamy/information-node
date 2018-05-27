@@ -6,5 +6,6 @@ export class AntiJamD3 {
     this.numberCC = Math.ceil(
       Math.log2(this.numberIC + 1 + Math.ceil(Math.log2(this.numberIC)))
     );
+    this.ccpositions = [];
   }
 }
