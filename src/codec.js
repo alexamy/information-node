@@ -5,7 +5,7 @@ export class Codec {
   constructor(message, coder) {
     this.info = new Information(message);
     this.message = message;
-    this.codes = new coder(this.info.symbols).codes;
+    this.codes = new coder(this.info).codes;
     this.messageCoded = this.code(this.message, this.codes);
   }
 
@@ -26,9 +26,9 @@ export class Codec {
     );
 }
 export class EqualBinaryCodes {
-  constructor(symbols) {
-    this.symbols = symbols;
-    this.wordLength = Math.ceil(Math.log2(symbols.length));
+  constructor(info) {
+    this.symbols = info.symbols;
+    this.wordLength = Math.ceil(Math.log2(this.symbols.length));
     this.codes = this.makeCodes(this.symbols, this.wordLength);
   }
 
@@ -61,8 +61,8 @@ export class EqualBinaryCodes {
 }
 
 export class ShannonCodes {
-  constructor(probabilities) {
-    this.probabilities = this.toMap(probabilities);
+  constructor(info) {
+    this.probabilities = this.toMap(info.probabilities);
     this.codes = {};
     for (let k of this.probabilities.keys()) this.codes[k] = '';
     this.makeCodes(this.probabilities, this.codes);
@@ -73,7 +73,7 @@ export class ShannonCodes {
     for (let key in probabilities) {
       keyValuePairs.push([key, probabilities[key]]);
     }
-    keyValuePairs = keyValuePairs.sort((a, b) => a[1] < b[1]);
+    keyValuePairs.sort((a, b) => b[1] - a[1]);
     return new Map(keyValuePairs);
   }
 

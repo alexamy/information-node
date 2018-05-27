@@ -25,7 +25,7 @@ function processFile(error, data) {
     codedByEqualBinary.messageCoded
   );
   const codedByShannon = new Codec(message, ShannonCodes);
-  const codedByShannonInfo = new Information(codedByShannon.codes);
+  const codedByShannonInfo = new Information(codedByShannon.messageCoded);
   console.log('information', info.total());
   console.log('equalBinaryCoded', codedByEqualBinary.total());
   console.log('equalBinaryCoded information', codedByEqualBinaryInfo.total());
