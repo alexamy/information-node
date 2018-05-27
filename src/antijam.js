@@ -36,7 +36,16 @@ export class AntiJamD3 {
   }
 
   makePhrase() {
-    return '';
+    let phrase = '';
+    for (let i = 0; i < this.length; i++) {
+      const sym = this.phraseMockup[i];
+      if (sym === 'k') {
+        phrase += sym;
+      } else {
+        phrase += sym;
+      }
+    }
+    return phrase;
   }
   static getPositionsForComputeCC(order, limit) {
     if (order <= 0) throw new Error('Order must be greater than 0');
