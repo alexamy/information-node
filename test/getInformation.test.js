@@ -1,8 +1,5 @@
-import { should } from "chai";
-
+import "chai/register-should";
 import Information from "../src/getInformation.js";
-
-should();
 
 describe("Information#message", () => {
   const tests = [
