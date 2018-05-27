@@ -59,3 +59,13 @@ export class EqualBinaryCodes {
       2
     );
 }
+
+export class ShannonCodes {
+  constructor(probabilities) {
+    this.probabilities = probabilities;
+  }
+
+  static getBestSliceIndex(probabilities) {
+    return 0;
+  }
+}
