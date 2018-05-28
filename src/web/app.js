@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
+import { InformationTable } from './informationTable.js';
 import { Information } from '../information.js';
 
 const info = new Information('privetikiki');
 
-class App extends Component {
+export class App extends Component {
   render() {
     return (
       <div className="App">
-        <p> {info.entropy} </p>
+        <InformationTable info={info.total()} />
       </div>
     );
   }
 }
-
-export default App;

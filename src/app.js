@@ -27,7 +27,7 @@ function processFile(error, data) {
   // alphabetically
   const message = prepareMessage(data);
   const info = new Information(message);
-  console.log('information', info.total());
+  console.log('information', JSON.stringify(info.total(), null, 2));
 
   // codecs
   const codecs = [

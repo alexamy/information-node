@@ -35,16 +35,11 @@ export class Information {
       0
     );
 
-  total = () =>
-    JSON.stringify(
-      {
-        message: this.message,
-        symbols: this.symbols,
-        probabilities: this.probabilities,
-        entropy: this.entropy,
-        redundancy: this.redundancy
-      },
-      null,
-      2
-    );
+  total = () => ({
+    message: this.message,
+    symbols: this.symbols,
+    probabilities: this.probabilities,
+    entropy: this.entropy,
+    redundancy: this.redundancy
+  });
 }
