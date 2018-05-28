@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Information } from "../information.js";
 import { MessageWithSyms } from "./messageWithSyms.js";
+import { ProbabilitiesInfo } from "./probabilitiesInfo.js";
 
 export class InformationTable extends Component {
   render() {
@@ -17,13 +19,18 @@ export class InformationTable extends Component {
                 />
               </td>
             </tr>
+            <ProbabilitiesInfo probabilities={this.props.info.probabilities} />
             <tr>
               <td>Энтропия</td>
-              <td>{this.props.info.entropy.toString()}</td>
+              <td>{this.props.info.entropy.toFixed(6)}</td>
+            </tr>
+            <tr>
+              <td>Максимальная энтропия</td>
+              <td>{this.props.info.redunMax.toFixed(6)}</td>
             </tr>
             <tr>
               <td>Избыточность</td>
-              <td>{this.props.info.redundancy.toString()}</td>
+              <td>{this.props.info.redundancy.toFixed(6)}</td>
             </tr>
           </tbody>
         </table>
@@ -33,5 +40,5 @@ export class InformationTable extends Component {
 }
 
 InformationTable.propTypes = {
-  info: PropTypes.instanceOf(InformationTable)
+  info: PropTypes.instanceOf(Information)
 };

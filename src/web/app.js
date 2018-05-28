@@ -12,9 +12,10 @@ const AppView = styled.div`
 export class App extends Component {
   constructor(props) {
     super(props);
+    const message = "поле полное полыни выпало полоть полине";
     this.state = {
-      message: "ваше сообщение",
-      info: new Information("ваше сообщение")
+      message,
+      info: new Information(message)
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -39,7 +40,7 @@ export class App extends Component {
           value={this.state.message}
           handleChange={this.handleChange}
         />
-        <InformationTable info={this.state.info.total()} />
+        <InformationTable info={this.state.info} />
       </AppView>
     );
   }
