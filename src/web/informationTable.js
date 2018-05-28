@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { MessageWithSyms } from "./messageWithSyms.js";
 
 export class InformationTable extends Component {
   render() {
@@ -9,7 +10,9 @@ export class InformationTable extends Component {
           <tbody>
             <tr>
               <td>Message</td>
-              <td>{this.props.info.message}</td>
+              <td>
+                <MessageWithSyms message={this.props.info.message} />
+              </td>
             </tr>
             <tr>
               <td>Entropy</td>
