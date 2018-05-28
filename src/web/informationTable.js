@@ -15,7 +15,7 @@ export class InformationTable extends Component {
   }
   render() {
     return (
-      <div class="informationTable">
+      <div className="informationTable">
         <table>
           <tbody>{this.rows}</tbody>
         </table>
