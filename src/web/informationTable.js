@@ -9,7 +9,7 @@ export class InformationTable extends Component {
         <table>
           <tbody>
             <tr>
-              <td>Message</td>
+              <td>Сообщение</td>
               <td>
                 <MessageWithSyms
                   message={this.props.info.message}
@@ -18,11 +18,11 @@ export class InformationTable extends Component {
               </td>
             </tr>
             <tr>
-              <td>Entropy</td>
+              <td>Энтропия</td>
               <td>{this.props.info.entropy.toString()}</td>
             </tr>
             <tr>
-              <td>Redundancy</td>
+              <td>Избыточность</td>
               <td>{this.props.info.redundancy.toString()}</td>
             </tr>
           </tbody>

@@ -13,8 +13,8 @@ export class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: "your message here",
-      info: new Information("your message here")
+      message: "ваше сообщение",
+      info: new Information("ваше сообщение")
     };
     this.handleChange = this.handleChange.bind(this);
   }
