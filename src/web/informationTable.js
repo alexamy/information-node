@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export class InformationTable extends Component {
   render() {
@@ -12,11 +13,11 @@ export class InformationTable extends Component {
             </tr>
             <tr>
               <td>Entropy</td>
-              <td>{this.props.info.entropy}</td>
+              <td>{this.props.info.entropy.toString()}</td>
             </tr>
             <tr>
               <td>Redundancy</td>
-              <td>{this.props.info.redundancy}</td>
+              <td>{this.props.info.redundancy.toString()}</td>
             </tr>
           </tbody>
         </table>
@@ -24,3 +25,7 @@ export class InformationTable extends Component {
     );
   }
 }
+
+InformationTable.propTypes = {
+  info: PropTypes.instanceOf(InformationTable)
+};

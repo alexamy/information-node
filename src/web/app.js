@@ -22,15 +22,14 @@ export class App extends Component {
   }
 
   render() {
-    const elements = [];
-    elements.push(
-      <InputForm
-        message={this.state.message}
-        handleChange={this.handleChange}
-      />
+    return (
+      <div className="App">
+        <InputForm
+          message={this.state.message}
+          handleChange={this.handleChange}
+        />
+        <InformationTable info={this.state.info.total()} />
+      </div>
     );
-    this.state.showInfo &&
-      elements.push(<InformationTable info={this.state.info.total()} />);
-    return <div className="App">{elements}</div>;
   }
 }
