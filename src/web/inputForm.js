@@ -1,14 +1,19 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+
+const Input = styled.input`
+  width: 100%;
+  font-size: 24px;
+`;
 export class InputForm extends Component {
   render() {
     return (
       <form>
         <label>
-          <div>Message:</div>
-          <input
+          <Input
             type="text"
-            value={this.props.message}
+            value={this.props.value}
             onChange={this.props.handleChange}
           />
         </label>
@@ -18,6 +23,6 @@ export class InputForm extends Component {
 }
 
 InputForm.propTypes = {
-  message: PropTypes.string,
+  value: PropTypes.string,
   handleChange: PropTypes.func
 };

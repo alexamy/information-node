@@ -2,15 +2,19 @@ import React, { Component } from "react";
 import { InformationTable } from "./informationTable.js";
 import { InputForm } from "./inputForm.js";
 import { Information } from "../information.js";
-import { OutgoingMessage } from "http";
+import styled from "styled-components";
+
+const AppView = styled.div`
+  width: 500px;
+  font-size: 24px;
+`;
 
 export class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: "Hello",
-      info: new Information("Hello"),
-      showInfo: true
+      message: "your message here",
+      info: new Information("your message here")
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -22,23 +26,21 @@ export class App extends Component {
     //     .replace(/[^ а-я]/g, "")
     //     .trim();
     const message = event.target.value;
-
     this.setState({
       message,
-      info: new Information(message),
-      showInfo: message.length > 1
+      info: new Information(message)
     });
   }
 
   render() {
     return (
-      <div className="App">
+      <AppView className="App">
         <InputForm
-          message={this.state.message}
+          value={this.state.message}
           handleChange={this.handleChange}
         />
         <InformationTable info={this.state.info.total()} />
-      </div>
+      </AppView>
     );
   }
 }
