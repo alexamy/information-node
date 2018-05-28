@@ -11,7 +11,10 @@ export class InformationTable extends Component {
             <tr>
               <td>Message</td>
               <td>
-                <MessageWithSyms message={this.props.info.message} />
+                <MessageWithSyms
+                  message={this.props.info.message}
+                  symbols={this.props.info.symbols}
+                />
               </td>
             </tr>
             <tr>
