@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 const AppView = styled.div`
   font-size: 24px;
+  padding: 1%;
 `;
 
 export class App extends Component {

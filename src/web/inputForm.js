@@ -5,6 +5,9 @@ import styled from 'styled-components';
 const Input = styled.input`
   width: 100%;
   font-size: 24px;
+  padding: 0 10px;
+  border: 0;
+  border-bottom: 1px solid grey;
 `;
 export class InputForm extends Component {
   constructor(props) {
