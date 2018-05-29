@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
+
 import { InformationTable } from './informationTable.js';
 import { InputForm } from './inputForm.js';
+import { ToggleGroup } from './toggleGroup.js';
+
 import { Information } from '../information.js';
-import styled from 'styled-components';
 
 const AppView = styled.div`
   font-size: 24px;
@@ -36,6 +39,7 @@ export class App extends Component {
   render() {
     return (
       <AppView className="container App">
+        <ToggleGroup />
         <InputForm
           value={this.state.message}
           handleChange={this.handleChange}
