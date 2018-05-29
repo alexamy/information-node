@@ -1,22 +1,22 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export class ProbabilitiesInfo extends Component {
   render() {
-    const els = [];
-    els.push(
-      <tr key="header">
-        <td colSpan="2">Вероятности</td>
-      </tr>
-    );
-    for (let key in this.props.probabilities)
-      els.push(
-        <tr key={key}>
-          <td>{key}</td>
-          <td>{this.props.probabilities[key].toFixed(6)}</td>
-        </tr>
+    const elements = [];
+    for (let key in this.props.probabilities) {
+      elements.push(
+        <div className="col-sm" key={key}>
+          <div className="row">{key === ' ' ? '\u00A0' : key}</div>
+          <div className="row">{this.props.probabilities[key].toFixed(6)}</div>
+        </div>
       );
-    return els;
+    }
+    return (
+      <div className="container">
+        <div className="row">{elements}</div>
+      </div>
+    );
   }
 }
 

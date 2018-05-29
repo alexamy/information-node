@@ -1,14 +1,15 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { Information } from "../information.js";
-import { MessageWithSyms } from "./messageWithSyms.js";
-import { ProbabilitiesInfo } from "./probabilitiesInfo.js";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Information } from '../information.js';
+import { MessageWithSyms } from './messageWithSyms.js';
+import { ProbabilitiesInfo } from './probabilitiesInfo.js';
+import { ToggleGroup } from './toggleGroup.js';
 
 export class InformationTable extends Component {
   render() {
     return (
       <div className="informationTable">
-        <table>
+        <table className="table">
           <tbody>
             <tr>
               <td>Сообщение</td>
@@ -19,7 +20,6 @@ export class InformationTable extends Component {
                 />
               </td>
             </tr>
-            <ProbabilitiesInfo probabilities={this.props.info.probabilities} />
             <tr>
               <td>Энтропия</td>
               <td>{this.props.info.entropy.toFixed(6)}</td>
@@ -34,6 +34,9 @@ export class InformationTable extends Component {
             </tr>
           </tbody>
         </table>
+        <ToggleGroup header="Вероятности">
+          <ProbabilitiesInfo probabilities={this.props.info.probabilities} />
+        </ToggleGroup>
       </div>
     );
   }
