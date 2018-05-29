@@ -19,13 +19,11 @@ export class InputForm extends Component {
   render() {
     return (
       <form>
-        <label>
-          <Input
-            type="text"
-            value={this.props.value}
-            onChange={this.handleChange}
-          />
-        </label>
+        <Input
+          type="text"
+          value={this.props.value}
+          onChange={this.handleChange}
+        />
       </form>
     );
   }

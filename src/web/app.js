@@ -1,18 +1,17 @@
-import React, { Component } from "react";
-import { InformationTable } from "./informationTable.js";
-import { InputForm } from "./inputForm.js";
-import { Information } from "../information.js";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import { InformationTable } from './informationTable.js';
+import { InputForm } from './inputForm.js';
+import { Information } from '../information.js';
+import styled from 'styled-components';
 
 const AppView = styled.div`
-  width: 500px;
   font-size: 24px;
 `;
 
 export class App extends Component {
   constructor(props) {
     super(props);
-    const message = "поле полное полыни выпало полоть полине";
+    const message = 'поле полное полыни выпало полоть полине';
     this.state = {
       message,
       info: new Information(message)
@@ -35,7 +34,7 @@ export class App extends Component {
 
   render() {
     return (
-      <AppView className="App">
+      <AppView className="container App">
         <InputForm
           value={this.state.message}
           handleChange={this.handleChange}
