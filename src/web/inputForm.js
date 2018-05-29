@@ -13,7 +13,7 @@ export class InputForm extends Component {
   }
 
   handleChange(e) {
-    this.props.handleChange(e.target.value);
+    this.props.handleChange(e);
   }
 
   render() {
