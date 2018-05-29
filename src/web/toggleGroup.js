@@ -5,11 +5,18 @@ import $ from 'jquery';
 
 const View = styled.div`
   user-select: none;
+  cursor: pointer;
 `;
-const Header = styled.div``;
+const Header = styled.div`
+  border: 1px solid grey;
+  padding: 0 10px;
+`;
 const Content = styled.div`
   overflow: hidden;
   position: relative;
+  border: 1px solid grey;
+  border-top: 0;
+  padding: 0 10px;
 `;
 
 export class ToggleGroup extends Component {
@@ -25,7 +32,7 @@ export class ToggleGroup extends Component {
   componentDidMount() {
     this.setState({
       expanded: false,
-      height: $(this.contentRef.current).height()
+      height: this.contentRef.current.offsetHeight
     });
   }
 
@@ -39,13 +46,13 @@ export class ToggleGroup extends Component {
   render() {
     return (
       <View onClick={this.changeState} onMouseDown={() => false}>
-        <Header>Example</Header>
+        <Header>{this.props.header}</Header>
         <VelocityComponent
           animation={{ height: this.state.expanded ? this.state.height : 0 }}
           duration={500}
         >
           <Content>
-            <div ref={this.contentRef}>Example</div>
+            <div ref={this.contentRef}>{this.props.children}</div>
           </Content>
         </VelocityComponent>
       </View>

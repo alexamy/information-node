@@ -39,7 +39,6 @@ export class App extends Component {
   render() {
     return (
       <AppView className="container App">
-        <ToggleGroup />
         <InputForm
           value={this.state.message}
           handleChange={this.handleChange}
