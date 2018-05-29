@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import VelocityComponent from 'velocity-react';
+import { VelocityComponent } from 'velocity-react';
 import styled from 'styled-components';
+import $ from 'jquery';
 
 const View = styled.div`
   user-select: none;
 `;
 const Header = styled.div``;
-const Content = styled.div``;
+const Content = styled.div`
+  overflow: hidden;
+  position: relative;
+`;
 
 export class ToggleGroup extends Component {
   constructor(props) {
@@ -14,7 +18,15 @@ export class ToggleGroup extends Component {
     this.state = {
       expanded: false
     };
+    this.contentRef = React.createRef();
     this.changeState = this.changeState.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      expanded: false,
+      height: $(this.contentRef.current).height()
+    });
   }
 
   changeState(e) {
@@ -28,7 +40,14 @@ export class ToggleGroup extends Component {
     return (
       <View onClick={this.changeState} onMouseDown={() => false}>
         <Header>Example</Header>
-        <Content>Example</Content>
+        <VelocityComponent
+          animation={{ height: this.state.expanded ? this.state.height : 0 }}
+          duration={500}
+        >
+          <Content>
+            <div ref={this.contentRef}>Example</div>
+          </Content>
+        </VelocityComponent>
       </View>
     );
   }
