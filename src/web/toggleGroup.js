@@ -26,26 +26,25 @@ export class ToggleGroup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      expanded: true //TODO expanded from props
+      expanded: props.expanded
     };
-    this.speed = 0.2;
     this.contentRef = React.createRef();
     this.changeState = this.changeState.bind(this);
     this.afterTransition = this.afterTransition.bind(this);
   }
 
+  componentDidMount() {
+    this.contentRef.current.style.display = this.props.expanded
+      ? 'block'
+      : 'none';
+  }
+
   changeState(e) {
     e.preventDefault();
-    this.updateDisplay();
+    this.contentRef.current.style.display = 'block';
     this.setState(prevState => ({
       expanded: !prevState.expanded
     }));
-  }
-
-  updateDisplay() {
-    if (!this.state.expanded) {
-      this.contentRef.current.style.display = 'block';
-    }
   }
 
   afterTransition(e) {
