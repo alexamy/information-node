@@ -10,6 +10,9 @@ const Header = styled.div`
   padding: 0 10px;
   user-select: none;
   cursor: pointer;
+  &:hover {
+    background: #fafafa;
+  }
 `;
 const Content = styled.div`
   overflow: hidden;
