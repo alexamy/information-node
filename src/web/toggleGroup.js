@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { VelocityComponent, velocityHelpers } from 'velocity-react';
-import 'velocity-animate/velocity.ui';
 import styled from 'styled-components';
-import $ from 'jquery';
 
 const View = styled.div`
   user-select: none;
@@ -18,6 +15,10 @@ const Content = styled.div`
   border: 1px solid #aaaaaa;
   border-top: 0;
   padding: 0 10px;
+  transform-origin: top;
+  transform: scaleY(${props => (props.expanded ? 1 : 0)});
+  opacity: ${props => (props.expanded ? 1 : 0)};
+  transition: all 300ms ease-in-out;
 `;
 
 export class ToggleGroup extends Component {
@@ -31,28 +32,10 @@ export class ToggleGroup extends Component {
     this.changeState = this.changeState.bind(this);
   }
 
-  componentDidMount() {
-    const height = $(this.contentRef.current).height();
-    this.setState({
-      expanded: false,
-      height
-    });
-    this.hideAnim = velocityHelpers.registerEffect({
-      calls: [[{ height: 0, borderBottomColor: '#ffffff' }]]
-    });
-  }
-
   changeState(e) {
     e.preventDefault();
-    const height = this.contentRef.current.offsetHeight;
-    this.showAnim = velocityHelpers.registerEffect({
-      calls: [[{ height, borderBottomColor: '#aaaaaa' }]],
-      reset: { height: '100%' }
-    });
-
     this.setState(prevState => ({
-      expanded: !prevState.expanded,
-      height
+      expanded: !prevState.expanded
     }));
   }
 
@@ -60,14 +43,7 @@ export class ToggleGroup extends Component {
     return (
       <View onClick={this.changeState} onMouseDown={() => false}>
         <Header>{this.props.header}</Header>
-        <VelocityComponent
-          animation={this.state.expanded ? this.showAnim : this.hideAnim}
-          duration={500}
-        >
-          <Content>
-            <div ref={this.contentRef}>{this.props.children}</div>
-          </Content>
-        </VelocityComponent>
+        <Content expanded={this.state.expanded}>{this.props.children}</Content>
       </View>
     );
   }
