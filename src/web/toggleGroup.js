@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-const View = styled.div``;
+const View = styled.div`
+  margin: 10px 0;
+`;
 const Header = styled.div`
   border: 1px solid #aaaaaa;
   padding: 0 10px;
@@ -24,7 +26,7 @@ export class ToggleGroup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      expanded: true
+      expanded: true //TODO expanded from props
     };
     this.speed = 0.2;
     this.contentRef = React.createRef();

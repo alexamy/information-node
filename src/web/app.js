@@ -41,6 +41,11 @@ export class App extends Component {
         <ToggleGroup header="Буквенное кодирование">
           <InformationTable info={new Information(this.state.message)} />
         </ToggleGroup>
+        <ToggleGroup header="Равномерный двоичный код" />
+        <ToggleGroup header="Код Шеннона-Фано" />
+        <ToggleGroup header="Код Хаффмана" />
+        <ToggleGroup header="Код Хемминга с d = 3" />
+        <ToggleGroup header="Код Хемминга с d = 4" />
       </AppView>
     );
   }
