@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const View = styled.div`
@@ -47,7 +48,7 @@ export class ToggleGroup extends Component {
     }));
   }
 
-  afterTransition(e) {
+  afterTransition() {
     if (!this.state.expanded) {
       this.contentRef.current.style.display = 'none';
     }
@@ -67,3 +68,9 @@ export class ToggleGroup extends Component {
     );
   }
 }
+
+ToggleGroup.propTypes = {
+  header: PropTypes.string,
+  expanded: PropTypes.bool,
+  children: PropTypes.element
+};
