@@ -38,7 +38,9 @@ export class App extends Component {
           value={this.state.message}
           handleChange={this.handleChange}
         />
-        <InformationTable info={new Information(this.state.message)} />
+        <ToggleGroup header="Буквенное кодирование">
+          <InformationTable info={new Information(this.state.message)} />
+        </ToggleGroup>
       </AppView>
     );
   }
