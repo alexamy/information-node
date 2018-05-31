@@ -72,8 +72,18 @@ export class App extends Component {
             <InformationTable info={this.state.infos.equalBinary} />
           </ToggleGroup>
         </ToggleGroup>
-        <ToggleGroup header="Код Шеннона-Фано" />
-        <ToggleGroup header="Код Хаффмана" />
+        <ToggleGroup header="Код Шеннона-Фано">
+          <CodecView coded={this.state.coded.shannon} />
+          <ToggleGroup header="Информация">
+            <InformationTable info={this.state.infos.shannon} />
+          </ToggleGroup>
+        </ToggleGroup>
+        <ToggleGroup header="Код Хаффмана">
+          <CodecView coded={this.state.coded.hoffman} />
+          <ToggleGroup header="Информация">
+            <InformationTable info={this.state.infos.hoffman} />
+          </ToggleGroup>
+        </ToggleGroup>
         <ToggleGroup header="Код Хемминга с d = 3" />
         <ToggleGroup header="Код Хемминга с d = 4" />
       </AppView>
