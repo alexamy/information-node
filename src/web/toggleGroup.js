@@ -3,27 +3,30 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const View = styled.div`
+  border: 1px solid #aaaaaa;
+  border-top-width: ${props => (props.end ? 0 : 1)}px;
+  border-bottom-width: ${props => (props.start ? 0 : 1)}px;
   margin: 10px 0;
+  margin-top: ${props => (props.inter || props.end ? 0 : 10)}px;
+  margin-bottom: ${props => (props.inter || props.start ? 0 : 10)}px;
 `;
 const Header = styled.div`
-  border: 1px solid #aaaaaa;
   padding: 0 10px;
   user-select: none;
   cursor: pointer;
+  background: ${props => (props.expanded ? '#eee' : 'none')};
   &:hover {
-    background: #fafafa;
+    background: ${props => (props.expanded ? '#ddd' : '#eee')};
   }
 `;
 const Content = styled.div`
   overflow: hidden;
   position: relative;
-  border: 1px solid #aaaaaa;
-  border-top: 0;
   padding: 0 10px;
   transform-origin: top;
   transform: scaleY(${props => (props.expanded ? 1 : 0)});
   opacity: ${props => (props.expanded ? 1 : 0)};
-  transition: all 300ms ease-in-out;
+  transition: transform 300ms ease-in-out;
 `;
 
 export class ToggleGroup extends Component {
@@ -59,8 +62,15 @@ export class ToggleGroup extends Component {
 
   render() {
     return (
-      <View onMouseDown={() => false}>
-        <Header onClick={this.changeState}>{this.props.header}</Header>
+      <View
+        start={this.props.start}
+        inter={this.props.inter ? 1 : 0}
+        end={this.props.end ? 1 : 0}
+        onMouseDown={() => false}
+      >
+        <Header expanded={this.state.expanded} onClick={this.changeState}>
+          {this.props.header}
+        </Header>
         <Content
           onTransitionEnd={this.afterTransition}
           expanded={this.state.expanded}
@@ -78,5 +88,8 @@ ToggleGroup.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.arrayOf(PropTypes.element)
-  ])
+  ]),
+  start: PropTypes.bool,
+  inter: PropTypes.bool,
+  end: PropTypes.bool
 };

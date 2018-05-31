@@ -69,16 +69,16 @@ export class App extends Component {
           value={this.state.message}
           handleChange={this.handleChange}
         />
-        <ToggleGroup header="Буквенное кодирование">
+        <ToggleGroup start header="Буквенное кодирование">
           <InformationTable info={this.state.infos.alphabetically} />
         </ToggleGroup>
-        <ToggleGroup header="Равномерный двоичный код">
+        <ToggleGroup inter header="Равномерный двоичный код">
           <CodecInfoFragment
             coded={this.state.coded.equalBinary}
             info={this.state.infos.equalBinary}
           />
         </ToggleGroup>
-        <ToggleGroup header="Код Шеннона-Фано">
+        <ToggleGroup end header="Код Шеннона-Фано">
           <CodecInfoFragment
             coded={this.state.coded.shannon}
             info={this.state.infos.shannon}
