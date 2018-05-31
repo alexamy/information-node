@@ -5,6 +5,7 @@ import { InformationTable } from './informationTable.js';
 import { InputForm } from './inputForm.js';
 import { ToggleGroup } from './toggleGroup.js';
 import { CodecView } from './codecView.js';
+import { CodecInfoFragment } from './codecInfoFragment.js';
 
 import { Information } from '../information.js';
 import {
@@ -43,7 +44,7 @@ export class App extends Component {
         hoffman: new Information(coded.hoffman.messageCoded)
       }
     };
-    isConstructor ? (this.state = state) : this.updateState(state);
+    isConstructor ? (this.state = state) : this.setState(state);
   }
 
   handleChange(event) {
@@ -67,22 +68,22 @@ export class App extends Component {
           <InformationTable info={this.state.infos.alphabetically} />
         </ToggleGroup>
         <ToggleGroup header="Равномерный двоичный код">
-          <CodecView coded={this.state.coded.equalBinary} />
-          <ToggleGroup header="Информация">
-            <InformationTable info={this.state.infos.equalBinary} />
-          </ToggleGroup>
+          <CodecInfoFragment
+            coded={this.state.coded.equalBinary}
+            info={this.state.infos.equalBinary}
+          />
         </ToggleGroup>
         <ToggleGroup header="Код Шеннона-Фано">
-          <CodecView coded={this.state.coded.shannon} />
-          <ToggleGroup header="Информация">
-            <InformationTable info={this.state.infos.shannon} />
-          </ToggleGroup>
+          <CodecInfoFragment
+            coded={this.state.coded.shannon}
+            info={this.state.infos.shannon}
+          />
         </ToggleGroup>
         <ToggleGroup header="Код Хаффмана">
-          <CodecView coded={this.state.coded.hoffman} />
-          <ToggleGroup header="Информация">
-            <InformationTable info={this.state.infos.hoffman} />
-          </ToggleGroup>
+          <CodecInfoFragment
+            coded={this.state.coded.hoffman}
+            info={this.state.infos.hoffman}
+          />
         </ToggleGroup>
         <ToggleGroup header="Код Хемминга с d = 3" />
         <ToggleGroup header="Код Хемминга с d = 4" />

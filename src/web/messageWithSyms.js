@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const UniqueSymbol = styled.span`
+  display: inline-block;
   color: red;
 `;
 const OtherSymbol = styled.span`
+  display: inline-block;
   color: black;
 `;
 
@@ -18,9 +20,9 @@ export class MessageWithSyms extends Component {
       const isFirstUnique = syms.findIndex(e => e === ch);
       const renderEl =
         isFirstUnique > -1 ? (
-          <UniqueSymbol key={i}>{ch}</UniqueSymbol>
+          <UniqueSymbol key={i}>{ch === ' ' ? '\u00A0' : ch}</UniqueSymbol>
         ) : (
-          <OtherSymbol key={i}>{ch}</OtherSymbol>
+          <OtherSymbol key={i}>{ch === ' ' ? '\u00A0' : ch}</OtherSymbol>
         );
       isFirstUnique > -1 && syms.shift();
       return renderEl;
