@@ -6,14 +6,14 @@ const CellKey = styled.td`
   width: 5%;
 `;
 
-export class ProbabilitiesInfo extends Component {
+export class KeyValueTable extends Component {
   render() {
     const elements = [];
-    for (let key in this.props.probabilities) {
+    for (let key in this.props.object) {
       elements.push(
         <tr key={key}>
           <CellKey>{key === ' ' ? '\u00A0' : key}</CellKey>
-          <td>{this.props.probabilities[key].toFixed(4)}</td>
+          <td>{this.props.object[key].toFixed(4)}</td>
         </tr>
       );
     }
@@ -27,6 +27,6 @@ export class ProbabilitiesInfo extends Component {
   }
 }
 
-ProbabilitiesInfo.propTypes = {
-  probabilities: PropTypes.objectOf(PropTypes.number)
+KeyValueTable.propTypes = {
+  object: PropTypes.objectOf(PropTypes.any)
 };

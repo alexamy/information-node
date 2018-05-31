@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Information } from '../information.js';
 import { MessageWithSyms } from './messageWithSyms.js';
-import { ProbabilitiesInfo } from './probabilitiesInfo.js';
+import { KeyValueTable } from './keyValueTable.js';
 import { ToggleGroup } from './toggleGroup.js';
 
 export class InformationTable extends Component {
@@ -35,7 +35,7 @@ export class InformationTable extends Component {
           </tbody>
         </table>
         <ToggleGroup header="Вероятности">
-          <ProbabilitiesInfo probabilities={this.props.info.probabilities} />
+          <KeyValueTable object={this.props.info.probabilities} />
         </ToggleGroup>
       </div>
     );
