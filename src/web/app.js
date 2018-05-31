@@ -14,6 +14,7 @@ import {
   ShannonCodes,
   HoffmanCodes
 } from '../codec.js';
+import { AntiJamD3Codec, AntiJamD4Codec } from '../antijamCodec.js';
 
 const AppView = styled.div`
   font-size: 24px;
@@ -32,7 +33,9 @@ export class App extends Component {
     const coded = {
       equalBinary: new Codec(message, EqualBinaryCodes),
       shannon: new Codec(message, ShannonCodes),
-      hoffman: new Codec(message, HoffmanCodes)
+      hoffman: new Codec(message, HoffmanCodes),
+      antijamD3: new Codec(message, AntiJamD3Codec),
+      antijamD4: new Codec(message, AntiJamD4Codec)
     };
     const state = {
       message,
@@ -41,7 +44,9 @@ export class App extends Component {
         alphabetically: new Information(message),
         equalBinary: new Information(coded.equalBinary.messageCoded),
         shannon: new Information(coded.shannon.messageCoded),
-        hoffman: new Information(coded.hoffman.messageCoded)
+        hoffman: new Information(coded.hoffman.messageCoded),
+        antijamD3: new Information(coded.antijamD3.messageCoded),
+        antijamD4: new Information(coded.antijamD4.messageCoded)
       }
     };
     isConstructor ? (this.state = state) : this.setState(state);
@@ -85,8 +90,18 @@ export class App extends Component {
             info={this.state.infos.hoffman}
           />
         </ToggleGroup>
-        <ToggleGroup header="Код Хемминга с d = 3" />
-        <ToggleGroup header="Код Хемминга с d = 4" />
+        <ToggleGroup header="Код Хемминга с d = 3 для РДК">
+          <CodecInfoFragment
+            coded={this.state.coded.antijamD3}
+            info={this.state.infos.antijamD3}
+          />
+        </ToggleGroup>
+        <ToggleGroup header="Код Хемминга с d = 4 для РДК">
+          <CodecInfoFragment
+            coded={this.state.coded.antijamD4}
+            info={this.state.infos.antijamD4}
+          />
+        </ToggleGroup>
       </AppView>
     );
   }
