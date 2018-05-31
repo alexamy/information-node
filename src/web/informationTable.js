@@ -9,7 +9,7 @@ export class InformationTable extends Component {
   render() {
     return (
       <div className="informationTable">
-        <table className="table">
+        <table className="table table-sm table-striped table-borderless">
           <tbody>
             {this.props.hideMessage ? (
               false

@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const CellKey = styled.td`
-  width: 5%;
-`;
-
 export class KeyValueTable extends Component {
   processValue(val) {
     if (typeof val === 'number') {
@@ -18,17 +14,15 @@ export class KeyValueTable extends Component {
     for (let key in this.props.object) {
       elements.push(
         <tr key={key}>
-          <CellKey>{key === ' ' ? '\u00A0' : key}</CellKey>
+          <td>{key === ' ' ? '\u00A0' : key}</td>
           <td>{this.processValue(this.props.object[key])}</td>
         </tr>
       );
     }
     return (
-      <div className="informationTable">
-        <table className="table table-borderless table-sm">
-          <tbody>{elements}</tbody>
-        </table>
-      </div>
+      <table className="table table-sm table-striped table-borderless">
+        <tbody>{elements}</tbody>
+      </table>
     );
   }
 }

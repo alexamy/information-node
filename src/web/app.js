@@ -18,7 +18,7 @@ import { AntiJamD3Codec, AntiJamD4Codec } from '../antijamCodec.js';
 
 const AppView = styled.div`
   font-size: 24px;
-  padding: 1%;
+  padding: 10px;
 `;
 
 export class App extends Component {
@@ -53,11 +53,6 @@ export class App extends Component {
   }
 
   handleChange(event) {
-    // const prepare = message =>
-    //   message
-    //     .toLowerCase()
-    //     .replace(/[^ а-я]/g, "")
-    //     .trim();
     const message = event.target.value;
     this.updateState(message);
   }
@@ -69,34 +64,40 @@ export class App extends Component {
           value={this.state.message}
           handleChange={this.handleChange}
         />
+
         <ToggleGroup start header="Буквенное кодирование">
           <InformationTable info={this.state.infos.alphabetically} />
         </ToggleGroup>
+
         <ToggleGroup inter header="Равномерный двоичный код">
           <CodecInfoFragment
             coded={this.state.coded.equalBinary}
             info={this.state.infos.equalBinary}
           />
         </ToggleGroup>
-        <ToggleGroup end header="Код Шеннона-Фано">
+
+        <ToggleGroup inter header="Код Шеннона-Фано">
           <CodecInfoFragment
             coded={this.state.coded.shannon}
             info={this.state.infos.shannon}
           />
         </ToggleGroup>
-        <ToggleGroup header="Код Хаффмана">
+
+        <ToggleGroup inter header="Код Хаффмана">
           <CodecInfoFragment
             coded={this.state.coded.hoffman}
             info={this.state.infos.hoffman}
           />
         </ToggleGroup>
-        <ToggleGroup header="Код Хемминга с d = 3 для РДК">
+
+        <ToggleGroup inter header="Код Хемминга с d = 3 для РДК">
           <CodecInfoFragment
             coded={this.state.coded.antijamD3}
             info={this.state.infos.antijamD3}
           />
         </ToggleGroup>
-        <ToggleGroup header="Код Хемминга с d = 4 для РДК">
+
+        <ToggleGroup end header="Код Хемминга с d = 4 для РДК">
           <CodecInfoFragment
             coded={this.state.coded.antijamD4}
             info={this.state.infos.antijamD4}

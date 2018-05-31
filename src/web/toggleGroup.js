@@ -4,8 +4,7 @@ import styled from 'styled-components';
 
 const View = styled.div`
   border: 1px solid #aaaaaa;
-  border-top-width: ${props => (props.end ? 0 : 1)}px;
-  border-bottom-width: ${props => (props.start ? 0 : 1)}px;
+  border-top-width: ${props => (props.inter || props.end ? 0 : 1)}px;
   margin: 10px 0;
   margin-top: ${props => (props.inter || props.end ? 0 : 10)}px;
   margin-bottom: ${props => (props.inter || props.start ? 0 : 10)}px;
@@ -22,11 +21,11 @@ const Header = styled.div`
 const Content = styled.div`
   overflow: hidden;
   position: relative;
-  padding: 0 10px;
+  padding: ${props => (props.expanded ? 10 : 0)}px;
   transform-origin: top;
   transform: scaleY(${props => (props.expanded ? 1 : 0)});
   opacity: ${props => (props.expanded ? 1 : 0)};
-  transition: transform 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
 `;
 
 export class ToggleGroup extends Component {
@@ -63,7 +62,7 @@ export class ToggleGroup extends Component {
   render() {
     return (
       <View
-        start={this.props.start}
+        start={this.props.start ? 1 : 0}
         inter={this.props.inter ? 1 : 0}
         end={this.props.end ? 1 : 0}
         onMouseDown={() => false}
