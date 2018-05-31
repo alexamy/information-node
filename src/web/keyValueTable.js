@@ -7,13 +7,19 @@ const CellKey = styled.td`
 `;
 
 export class KeyValueTable extends Component {
+  processValue(val) {
+    if (typeof val === 'number') {
+      return val.toFixed(4);
+    } else return val;
+  }
+
   render() {
     const elements = [];
     for (let key in this.props.object) {
       elements.push(
         <tr key={key}>
           <CellKey>{key === ' ' ? '\u00A0' : key}</CellKey>
-          <td>{this.props.object[key].toFixed(4)}</td>
+          <td>{this.processValue(this.props.object[key])}</td>
         </tr>
       );
     }

@@ -6,13 +6,13 @@ export class Codec {
     this.info = new Information(message);
     this.message = message;
     this.codes = new coder(this.info).codes;
-    this.messageCoded = this.code(this.message, this.codes);
+    this.messageCoded = this.code();
   }
 
-  code = (message, codes) =>
-    Array.from(message)
-      .map(ch => codes[ch])
-      .join('');
+  code = (delimiter = '') =>
+    Array.from(this.message)
+      .map(ch => this.codes[ch])
+      .join(delimiter);
 
   total = () =>
     JSON.stringify(

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const UniqueSymbol = styled.span`
   color: red;
@@ -26,7 +26,7 @@ export class MessageWithSyms extends Component {
       return renderEl;
     });
 
-    return <span>{els}</span>;
+    return <React.Fragment>{els}</React.Fragment>;
   }
 }
 

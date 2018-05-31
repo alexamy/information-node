@@ -75,5 +75,8 @@ export class ToggleGroup extends Component {
 ToggleGroup.propTypes = {
   header: PropTypes.string,
   expanded: PropTypes.bool,
-  children: PropTypes.element
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element)
+  ])
 };

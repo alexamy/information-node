@@ -4,8 +4,15 @@ import styled from 'styled-components';
 import { InformationTable } from './informationTable.js';
 import { InputForm } from './inputForm.js';
 import { ToggleGroup } from './toggleGroup.js';
+import { CodecView } from './codecView.js';
 
 import { Information } from '../information.js';
+import {
+  Codec,
+  EqualBinaryCodes,
+  ShannonCodes,
+  HoffmanCodes
+} from '../codec.js';
 
 const AppView = styled.div`
   font-size: 24px;
@@ -15,10 +22,28 @@ const AppView = styled.div`
 export class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      message: 'поле полное полыни выпало полоть полине'
-    };
+    this.state = {};
     this.handleChange = this.handleChange.bind(this);
+    this.updateState('поле полное полыни выпало полоть полине', true);
+  }
+
+  updateState(message, isConstructor = false) {
+    const coded = {
+      equalBinary: new Codec(message, EqualBinaryCodes),
+      shannon: new Codec(message, ShannonCodes),
+      hoffman: new Codec(message, HoffmanCodes)
+    };
+    const state = {
+      message,
+      coded,
+      infos: {
+        alphabetically: new Information(message),
+        equalBinary: new Information(coded.equalBinary.messageCoded),
+        shannon: new Information(coded.shannon.messageCoded),
+        hoffman: new Information(coded.hoffman.messageCoded)
+      }
+    };
+    isConstructor ? (this.state = state) : this.updateState(state);
   }
 
   handleChange(event) {
@@ -28,7 +53,7 @@ export class App extends Component {
     //     .replace(/[^ а-я]/g, "")
     //     .trim();
     const message = event.target.value;
-    this.setState({ message });
+    this.updateState(message);
   }
 
   render() {
@@ -39,9 +64,14 @@ export class App extends Component {
           handleChange={this.handleChange}
         />
         <ToggleGroup header="Буквенное кодирование">
-          <InformationTable info={new Information(this.state.message)} />
+          <InformationTable info={this.state.infos.alphabetically} />
         </ToggleGroup>
-        <ToggleGroup header="Равномерный двоичный код" />
+        <ToggleGroup header="Равномерный двоичный код">
+          <CodecView coded={this.state.coded.equalBinary} />
+          <ToggleGroup header="Информация">
+            <InformationTable info={this.state.infos.equalBinary} />
+          </ToggleGroup>
+        </ToggleGroup>
         <ToggleGroup header="Код Шеннона-Фано" />
         <ToggleGroup header="Код Хаффмана" />
         <ToggleGroup header="Код Хемминга с d = 3" />
