@@ -64,7 +64,7 @@ export class AntiJamD3 {
     const result = [];
     let idx = 1;
     while (idx <= limit) {
-      if (idx & orderBitwise) result.push(idx);
+      if (idx & orderBitwise) result.push(idx - 1);
       idx++;
     }
     return result;
